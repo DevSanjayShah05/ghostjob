@@ -1,0 +1,209 @@
+company_name,ats,board_token,industry,size_bucket,hq_state
+AlphaSights,greenhouse,alphasights,consulting,1001-5000,NY
+Capco,greenhouse,capco,consulting,5001+,NY
+Charles River Associates,greenhouse,charlesriverassociates,consulting,1001-5000,MA
+Clearview Healthcare Partners,greenhouse,clearviewhealthcarepartners,consulting,201-1000,MA
+Exiger,greenhouse,exiger,consulting,1001-5000,NY
+Gallup,greenhouse,gallup,consulting,1001-5000,DC
+Guidepoint,greenhouse,guidepoint,consulting,1001-5000,NY
+Multiverse,ashby,multiverse,consulting,201-1000,NY
+Nava,greenhouse,navapbc,consulting,201-1000,DC
+Oliver Wyman,lever,oliverwyman,consulting,5001+,NY
+Pariveda,ashby,pariveda,consulting,201-1000,TX
+phData,greenhouse,phdata,consulting,201-1000,MN
+Third Bridge,greenhouse,thirdbridge,consulting,1001-5000,NY
+Thoughtworks,greenhouse,thoughtworks,consulting,5001+,IL
+Wavicle Data Solutions,lever,wavicledata,consulting,201-1000,IL
+Affirm,greenhouse,affirm,finance,1001-5000,CA
+Akuna Capital,greenhouse,akunacapital,finance,201-1000,IL
+Alloy,greenhouse,alloy,finance,201-1000,NY
+Betterment,greenhouse,betterment,finance,201-1000,NY
+Brex,greenhouse,brex,finance,1001-5000,CA
+Bridgewater,greenhouse,bridgewater89,finance,1001-5000,CT
+Brigit,ashby,brigit,finance,201-1000,NY
+Carta,greenhouse,carta,finance,1001-5000,CA
+Chime,greenhouse,chime,finance,1001-5000,CA
+Coinbase,greenhouse,coinbase,finance,1001-5000,CA
+Column,ashby,column,finance,1-200,CA
+DRW,greenhouse,drweng,finance,1001-5000,IL
+Fetch Pet Insurance,greenhouse,fetch,finance,201-1000,NY
+Found,ashby,found,finance,1-200,CA
+Gemini,greenhouse,gemini,finance,201-1000,NY
+Gusto,greenhouse,gusto,finance,1001-5000,CA
+Hudson River Trading,greenhouse,wehrtyou,finance,1001-5000,NY
+IMC Trading,greenhouse,imc,finance,1001-5000,IL
+Jump Trading,greenhouse,jumptrading,finance,1001-5000,IL
+Justworks,greenhouse,justworks,finance,1001-5000,NY
+Kalshi,ashby,kalshi,finance,1-200,NY
+Kraken,ashby,kraken.com,finance,1001-5000,CA
+Mercury,greenhouse,mercury,finance,201-1000,CA
+NerdWallet,ashby,nerdwallet,finance,201-1000,CA
+Plaid,ashby,plaid,finance,1001-5000,CA
+Point72,greenhouse,point72,finance,1001-5000,CT
+Ramp,ashby,ramp,finance,1001-5000,NY
+Robinhood,greenhouse,robinhood,finance,1001-5000,CA
+SoFi,greenhouse,sofi,finance,1001-5000,CA
+Stripe,greenhouse,stripe,finance,5001+,CA
+Toast,greenhouse,toast,finance,5001+,MA
+Upstart,greenhouse,upstart,finance,1001-5000,CA
+Virtu Financial,greenhouse,virtu,finance,1001-5000,NY
+Wealthfront,lever,wealthfront,finance,201-1000,CA
+Wealthsimple,ashby,wealthsimple,finance,1001-5000,
+Abridge,ashby,abridge,healthcare,201-1000,PA
+Aledade,lever,aledade,healthcare,1001-5000,MD
+Alma,ashby,alma,healthcare,201-1000,NY
+Ambience Healthcare,ashby,ambiencehealthcare,healthcare,201-1000,CA
+Arcadia,lever,arcadia,healthcare,201-1000,MA
+Benchling,ashby,benchling,healthcare,201-1000,CA
+Calm,greenhouse,calm,healthcare,201-1000,CA
+Clover Health,greenhouse,cloverhealth,healthcare,201-1000,TN
+Commure,ashby,commure,healthcare,1001-5000,CA
+Elation Health,greenhouse,elationhealth,healthcare,201-1000,CA
+Flatiron Health,greenhouse,flatironhealth,healthcare,1001-5000,NY
+Garner Health,greenhouse,garnerhealth,healthcare,201-1000,NY
+Ginkgo Bioworks,greenhouse,ginkgobioworks,healthcare,201-1000,MA
+Headway,ashby,headway,healthcare,201-1000,NY
+Included Health,lever,includedhealth,healthcare,1001-5000,CA
+Insitro,ashby,insitro,healthcare,201-1000,CA
+Komodo Health,greenhouse,komodohealth,healthcare,201-1000,CA
+Lyra Health,lever,lyrahealth,healthcare,1001-5000,CA
+Maven Clinic,greenhouse,mavenclinic,healthcare,201-1000,NY
+Medely,ashby,medely,healthcare,201-1000,CA
+Natera,greenhouse,natera,healthcare,1001-5000,TX
+Neuralink,greenhouse,neuralink,healthcare,201-1000,TX
+Nomi Health,lever,nomihealth,healthcare,1001-5000,UT
+Omada Health,greenhouse,omadahealth,healthcare,201-1000,CA
+Oscar Health,greenhouse,oscar,healthcare,1001-5000,NY
+Recursion,greenhouse,recursionpharmaceuticals,healthcare,201-1000,UT
+Ro,lever,ro,healthcare,201-1000,NY
+Strive Health,greenhouse,strivehealth,healthcare,201-1000,CO
+Sword Health,greenhouse,swordhealth,healthcare,1001-5000,NY
+Talkspace,greenhouse,talkspace,healthcare,201-1000,NY
+Tennr,ashby,tennr,healthcare,1-200,NY
+Veeva,lever,veeva,healthcare,5001+,CA
+Whoop,ashby,whoop,healthcare,201-1000,MA
+Zipline,greenhouse,flyzipline,healthcare,201-1000,CA
+Zocdoc,greenhouse,zocdoc,healthcare,201-1000,NY
+Zus Health,lever,zushealth,healthcare,1-200,MA
+Away,ashby,away,retail,201-1000,NY
+BARK,greenhouse,bark,retail,201-1000,NY
+Bombas,greenhouse,bombas,retail,201-1000,NY
+Brilliant Earth,greenhouse,brilliantearth,retail,201-1000,CA
+Brooklinen,ashby,brooklinen,retail,1-200,NY
+Dollar Shave Club,greenhouse,dollarshaveclub,retail,201-1000,CA
+DoorDash,greenhouse,doordashusa,retail,5001+,CA
+Everlane,greenhouse,everlane,retail,201-1000,CA
+Faire,greenhouse,faire,retail,1001-5000,CA
+Glossier,greenhouse,glossier,retail,201-1000,NY
+GOAT Group,greenhouse,goatgroup,retail,1001-5000,CA
+Good American,lever,goodamerican,retail,201-1000,CA
+Gopuff,lever,gopuff,retail,5001+,PA
+Grove Collaborative,greenhouse,grovecollaborative,retail,201-1000,CA
+Harry's,greenhouse,harrys,retail,201-1000,NY
+HelloFresh,greenhouse,hellofresh,retail,5001+,NY
+Ibotta,ashby,ibotta,retail,201-1000,CO
+Instacart,greenhouse,instacart,retail,1001-5000,CA
+Liquid Death,greenhouse,liquiddeath,retail,201-1000,CA
+Mejuri,greenhouse,mejuri,retail,201-1000,
+Misfits Market,greenhouse,misfitsmarket,retail,1001-5000,PA
+OfferUp,greenhouse,offerup,retail,201-1000,WA
+Olipop,greenhouse,olipop,retail,201-1000,CA
+Parachute Home,greenhouse,parachutehome,retail,201-1000,CA
+Peloton,greenhouse,peloton,retail,1001-5000,NY
+Poshmark,ashby,poshmark,retail,201-1000,CA
+Quince,greenhouse,quince,retail,201-1000,CA
+Rent the Runway,greenhouse,renttherunway,retail,1001-5000,NY
+Rothy's,ashby,rothys,retail,201-1000,CA
+Rover,lever,rover,retail,201-1000,WA
+Stitch Fix,greenhouse,stitchfix,retail,1001-5000,CA
+StockX,greenhouse,stockx,retail,1001-5000,MI
+Sweetgreen,greenhouse,sweetgreen,retail,5001+,CA
+Thrive Market,greenhouse,thrivemarket,retail,201-1000,CA
+Tonal,ashby,tonal,retail,201-1000,CA
+Abnormal Security,greenhouse,abnormalsecurity,tech,1001-5000,CA
+Airbnb,greenhouse,airbnb,tech,5001+,CA
+Airbyte,ashby,airbyte,tech,1-200,CA
+Airtable,greenhouse,airtable,tech,201-1000,CA
+Amplitude,ashby,amplitude,tech,201-1000,CA
+Anduril,greenhouse,andurilindustries,tech,1001-5000,CA
+Anthropic,greenhouse,anthropic,tech,1001-5000,CA
+Anyscale,ashby,anyscale,tech,201-1000,CA
+Asana,greenhouse,asana,tech,1001-5000,CA
+Ashby,ashby,ashby,tech,1-200,CA
+Attentive,greenhouse,attentive,tech,201-1000,NY
+Braze,greenhouse,braze,tech,1001-5000,NY
+Calendly,greenhouse,calendly,tech,201-1000,GA
+Checkr,greenhouse,checkr,tech,201-1000,CA
+Clay,ashby,claylabs,tech,1-200,NY
+Cloudflare,greenhouse,cloudflare,tech,1001-5000,CA
+Cohere,ashby,cohere,tech,201-1000,
+Compass,greenhouse,urbancompass,tech,1001-5000,NY
+Cortex,greenhouse,cortex,tech,1-200,CA
+Coursera,greenhouse,coursera,tech,1001-5000,CA
+Cursor,ashby,cursor,tech,201-1000,CA
+Databricks,greenhouse,databricks,tech,5001+,CA
+Datadog,greenhouse,datadog,tech,5001+,NY
+Decagon,ashby,decagon,tech,1-200,CA
+Discord,greenhouse,discord,tech,201-1000,CA
+Dropbox,greenhouse,dropbox,tech,1001-5000,CA
+Duolingo,greenhouse,duolingo,tech,201-1000,PA
+Elastic,greenhouse,elastic,tech,1001-5000,CA
+ElevenLabs,ashby,elevenlabs,tech,201-1000,NY
+Figma,greenhouse,figma,tech,1001-5000,CA
+Fivetran,greenhouse,fivetran,tech,1001-5000,CA
+Flexport,greenhouse,flexport,tech,1001-5000,CA
+GitLab,greenhouse,gitlab,tech,1001-5000,CA
+Gong,greenhouse,gongio,tech,1001-5000,CA
+Harvey,ashby,harvey,tech,201-1000,CA
+Hex,ashby,hex,tech,1-200,CA
+Imply,greenhouse,imply,tech,201-1000,CA
+Instructure,ashby,instructure,tech,1001-5000,UT
+Intercom,greenhouse,intercom,tech,1001-5000,CA
+Klaviyo,greenhouse,klaviyo,tech,1001-5000,MA
+Lattice,greenhouse,lattice,tech,201-1000,CA
+Linear,ashby,linear,tech,1-200,CA
+Lucid Motors,greenhouse,lucidmotors,tech,5001+,CA
+Lyft,greenhouse,lyft,tech,1001-5000,CA
+Mindbody,ashby,mindbody,tech,1001-5000,CA
+Mixpanel,greenhouse,mixpanel,tech,201-1000,CA
+Modal,ashby,modal,tech,1-200,NY
+MongoDB,greenhouse,mongodb,tech,5001+,NY
+Motive,greenhouse,gomotive,tech,1001-5000,CA
+Navan,greenhouse,tripactions,tech,1001-5000,CA
+Nextdoor,greenhouse,nextdoor,tech,201-1000,CA
+Notion,ashby,notion,tech,201-1000,CA
+Nuro,greenhouse,nuro,tech,201-1000,CA
+Okta,greenhouse,okta,tech,5001+,CA
+OpenAI,ashby,openai,tech,1001-5000,CA
+Outreach,lever,outreach,tech,1001-5000,WA
+PagerDuty,greenhouse,pagerduty,tech,1001-5000,CA
+Palantir,lever,palantir,tech,1001-5000,CO
+Perplexity,ashby,perplexity,tech,201-1000,CA
+Pigment,lever,pigment,tech,201-1000,
+Pinterest,greenhouse,pinterest,tech,1001-5000,CA
+PostHog,ashby,posthog,tech,1-200,CA
+Reddit,greenhouse,reddit,tech,1001-5000,CA
+Replit,ashby,replit,tech,1-200,CA
+Roblox,greenhouse,roblox,tech,1001-5000,CA
+Rubrik,greenhouse,rubrik,tech,1001-5000,CA
+Runway,ashby,runway,tech,1-200,NY
+Samsara,greenhouse,samsara,tech,1001-5000,CA
+Scale AI,greenhouse,scaleai,tech,201-1000,CA
+Sierra,ashby,sierra,tech,201-1000,CA
+Spotify,lever,spotify,tech,5001+,NY
+Squarespace,greenhouse,squarespace,tech,1001-5000,NY
+Sumo Logic,greenhouse,sumologic,tech,201-1000,CA
+Supabase,ashby,supabase,tech,1-200,CA
+Thumbtack,ashby,thumbtack,tech,201-1000,CA
+Twilio,greenhouse,twilio,tech,5001+,CA
+Twitch,greenhouse,twitch,tech,1001-5000,CA
+Udemy,greenhouse,udemy,tech,1001-5000,CA
+Vanta,ashby,vanta,tech,201-1000,CA
+Vercel,greenhouse,vercel,tech,201-1000,CA
+Verkada,greenhouse,verkada,tech,1001-5000,CA
+Watershed,ashby,watershed,tech,201-1000,CA
+Waymo,greenhouse,waymo,tech,1001-5000,CA
+Webflow,ashby,webflow,tech,201-1000,CA
+Zapier,ashby,zapier,tech,201-1000,CA
+Zoox,lever,zoox,tech,1001-5000,CA
+Zscaler,greenhouse,zscaler,tech,5001+,CA

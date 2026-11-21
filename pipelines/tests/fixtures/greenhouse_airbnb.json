@@ -1,0 +1,179 @@
+{
+ "jobs": [
+  {
+   "absolute_url": "https://careers.airbnb.com/positions/7834481?gh_jid=7834481",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 3417562,
+   "location": {
+    "name": "United States "
+   },
+   "metadata": [
+    {
+     "id": 9245691,
+     "name": "Is this job part of ACC?",
+     "value": false,
+     "value_type": "yes_no"
+    },
+    {
+     "id": 10216612,
+     "name": "Workplace Type",
+     "value": "Remote",
+     "value_type": "single_select"
+    }
+   ],
+   "id": 7834481,
+   "updated_at": "2026-11-10T17:52:22-05:00",
+   "requisition_id": "MULTI",
+   "title": "Business Operations and Growth Lead",
+   "pay_input_ranges": [
+    {
+     "min_cents": 16800000,
+     "max_cents": 20300000,
+     "currency_type": "USD",
+     "title": "Pay Range",
+     "blurb": "<p><span style=\"font-size: 16px;\"><strong><span style=\"font-family: arial, helvetica, sans-serif; color: rgb(0, 0, 0);\">How We'll Take Care of You:</span></strong></span></p>\n<p class=\"p1\"><span style=\"font-size: 16px;\">Our job titles may span more than one career level. The actual base pay is dependent upon many factors, such as: training, transferable skills, work experience, business needs and market demands. The base pay range is subject to change and may be modified in the future. This role may also be eligible for bonus, equity, benefits, and Employee Travel Credits. &nbsp;</span></p>"
+    }
+   ],
+   "company_name": "Airbnb",
+   "first_published": "2026-04-21T19:15:15-04:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: helvetica, arial, sans-serif; font-size: 12pt;&quot;&gt;Airbnb was born in 2007 when two hosts welcomed three guests to their San Francisco home, and has since grown to over 5 million hosts who have welcomed over 2 billion guest arrivals in almost every country across the globe. Every day, hosts offer unique stays and experiences that make it possible for guests to connect with communities in a more authentic way.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;The Community You Will Join:&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;The Chief Business Officer organization plays a pivotal role in driving the company\u2019s growth and expansion efforts worldwide. Our teammates work on commercializing Airbnb\u2019s new and existing businesses, helping Airbnb expand beyond its core offering as a place to stay. This includes recruiting and developing Airbnb\u2019s global supply of high-quality stays, Experiences, and Services, and executing Airbnb\u2019s global strategy in the market. With a focus on business strategy, quality supply and international expansion, the team is leading the way for Airbnb\u2019s continued growth and success in its next chapter.&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;The Global Markets Team, which sits within CBO, ensures that Airbnb is locally relevant and serves the needs of our global hosts and guests, helping regions more efficiently plan and execute growth strategies across supply, demand, and other surfaces in a way that will resonate with our communities.&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;The Difference You Will Make&lt;/strong&gt;:&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;You will work closely with the cross-functional leaders and teams, and play a key role in scaling our community growth and optimization-focused programs. The successful candidate will report to the Director, Programs and Business Operations.&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;A Typical Day:&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Align all functions&amp;nbsp; to achieve Americas\u2019s regional business objectives in partnership with the Director, Regional Business Operations and Growth.&lt;/li&gt;\n&lt;li&gt;Own the conception, execution, and measurement of cross-functional initiatives end-to-end. Concretely, this means defining a crisp problem statement, articulating the ideal solution to that problem, identifying key dependencies blocking that solution, and then working with cross-functional stakeholders to achieve the solution. These initiatives will span across the demand, supply, and regulatory surfaces of the business.&amp;nbsp;&lt;/li&gt;\n&lt;li&gt;Drive regular business operation meetings and initiate meaningful conversations - leading weekly meetings with cross-functional project teams (field &amp;amp; online operations, marketing, product, legal) to ensure key initiatives are on track.&lt;/li&gt;\n&lt;li&gt;Use all available data sources and tools, internal and external, to analyze macro and micro trends, and present analysis, insights, and actionable plans to Airbnb country and regional leadership team to drive key business decisions.&amp;nbsp;&lt;/li&gt;\n&lt;li&gt;Assist the Regional Director and Regional BizOps Director in owning the performance narrative for key metrics and deliver the story to senior leaders in a concise and clear manner in weekly, monthly, and quarterly business reviews&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;strong&gt;Your Expertise:&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Qualified candidates will ideally have a minimum of 10+ years of work experience, preferably with combined exposure to data-modeling, business analytics, and project management in a dynamic entrepreneurial environment.&amp;nbsp;&lt;/li&gt;\n&lt;li&gt;A proven bias to action and ability to own a project from conception through to post-mortem.&lt;/li&gt;\n&lt;li&gt;Ability to work in a world of uncertainty and ambiguity - to create clarity from ",
+   "departments": [
+    {
+     "id": 73685,
+     "name": "Business Operations/Analysis",
+     "child_ids": [],
+     "parent_id": 73697
+    }
+   ],
+   "offices": [
+    {
+     "id": 63868,
+     "name": "United States",
+     "location": null,
+     "child_ids": [
+      246412,
+      258081,
+      258082,
+      258083,
+      87306,
+      87309,
+      211524,
+      87312,
+      87316,
+      87315,
+      104152,
+      88158,
+      85791,
+      87313,
+      88161,
+      87308,
+      87311,
+      87307,
+      80804,
+      109320,
+      87314,
+      88160,
+      78632,
+      87310,
+      88159,
+      241531,
+      108489,
+      62810,
+      62444,
+      85003,
+      104153,
+      12964,
+      11235,
+      55,
+      4447,
+      5924,
+      1316,
+      162,
+      5925,
+      1086,
+      1355
+     ],
+     "parent_id": 17515
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  },
+  {
+   "absolute_url": "https://careers.airbnb.com/positions/8365363?gh_jid=8365363",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 3614972,
+   "location": {
+    "name": "Barcelona, Spain"
+   },
+   "metadata": [
+    {
+     "id": 9245691,
+     "name": "Is this job part of ACC?",
+     "value": false,
+     "value_type": "yes_no"
+    },
+    {
+     "id": 10216612,
+     "name": "Workplace Type",
+     "value": "Hybrid",
+     "value_type": "single_select"
+    }
+   ],
+   "id": 8365363,
+   "updated_at": "2026-11-11T07:32:56-05:00",
+   "requisition_id": "ONE",
+   "title": "Account Executive (Hotels)",
+   "pay_input_ranges": [],
+   "company_name": "Airbnb",
+   "first_published": "2026-11-10T04:49:33-05:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: helvetica, arial, sans-serif; font-size: 12pt;&quot;&gt;Airbnb was born in 2007 when two hosts welcomed three guests to their San Francisco home, and has since grown to over 5 million hosts who have welcomed over 2 billion guest arrivals in almost every country across the globe. Every day, hosts offer unique stays and experiences that make it possible for guests to connect with communities in a more authentic way.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;The Community You Will Join:&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;The Airbnb Hotels team is a fun, fast-growing group leading Airbnb\u2019s expansion into the hotel sector. Operating with an entrepreneurial spirit, this team combines the simplicity, product excellence, and guest-centered ethos that define Airbnb. This team\u2019s mission is to deliver the smoothest, most intuitive hotel booking experience for guests, while helping independent, boutique hotels easily drive incremental bookings so they can focus on delivering the best hospitality. The ultimate aim is to help more people discover high-quality hotels, creating value for guests and our hotel partners.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;The Difference You Will Make&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;As an Account Executive, you will be responsible for converting leads into net\u2011new supply to support new-market launches and at pace to hit quarterly goals. Working the full sales funnel, you will proactively turn cold leads into warm sales opportunities helping to build the Hotels category\u2019s market presence in the process through collaboration with other teams. This includes partnering, strategizing, and running daily operations directly with independent, boutique hotels, and ensuring that Airbnb sources&amp;nbsp; the best hotel inventory available to our guests.&lt;/p&gt;\n&lt;p&gt;This role is based in Barcelona (hybrid, 2 days a week in the office).&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;A Typical Day&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Meet and exceed KPIs by owning the performance and success of assigned region&lt;/li&gt;\n&lt;li&gt;Prospect new potential hotels through external research, networking, and use of Airbnb tools&lt;/li&gt;\n&lt;li&gt;Securing new hotels involves targeted sales strategies and negotiating and closing the deals&lt;/li&gt;\n&lt;li&gt;Develops acquisition strategies and scalable, localised supply strategies for established and emerging markets&lt;/li&gt;\n&lt;li&gt;Expertly position and communicate Airbnb\u2019s value proposition to new partners via phone, email, and in-person&lt;/li&gt;\n&lt;li&gt;Add net new hotels by qualifying and moving leads through the funnel as quickly as possible, achieving defined quarterly goals&lt;/li&gt;\n&lt;li&gt;Find supply in and launch new markets: Own market launches including supporting lead generation and coordinating cross functionally&lt;/li&gt;\n&lt;li&gt;Support hotel onboarding as needed from won sales opportunities&lt;/li&gt;\n&lt;li&gt;Effectively promote and build strong relationships with hotels by demonstrating comprehensive knowledge of our platforms and confidently pitching their value&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;strong&gt;Your Expertise&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;6+ years of professional experience, preferably in a fast growing startup tech or hospitality company working in sales and/or account management&lt;/li&gt;\n&lt;li&gt;Previous hospitality experience is a plus&lt;/li&gt;\n&lt;li&gt;Proficiency in both English and Spanish is a must! Portuguese is a plus.&amp;nbsp;&lt;/li&gt;\n&lt;li&gt;CRM required; Proficiency in Salesforce, Gong and other scalable AI Sales prospecting tools is a plus.&lt;/li&gt;\n&lt;li&gt;The ability to get things done with constantly changing priorities, projects and deadlines&lt;/li&gt;\n&lt;li&gt;Excellent communication, organizational, and analytical skills, detail-oriented but moves fast&lt;/li&gt;\n&lt;li&gt;Abili",
+   "departments": [
+    {
+     "id": 57796,
+     "name": "Sales",
+     "child_ids": [],
+     "parent_id": 73691
+    }
+   ],
+   "offices": [
+    {
+     "id": 155,
+     "name": "Barcelona, Spain",
+     "location": "Barcelona, Spain",
+     "child_ids": [],
+     "parent_id": 64284
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  }
+ ],
+ "meta": {
+  "total": 2
+ }
+}

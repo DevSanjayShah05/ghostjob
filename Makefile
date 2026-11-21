@@ -1,4 +1,4 @@
-.PHONY: setup db db-down api web test lint
+.PHONY: setup db db-down api web test lint ingest validate-seeds
 
 setup:      ## install Python + JS dependencies and git hooks
 	uv sync
@@ -23,3 +23,9 @@ test:
 lint:
 	uv run ruff check . && uv run ruff format --check . && uv run mypy
 	pnpm lint && pnpm typecheck
+
+ingest:     ## run the daily pipeline once against DATABASE_URL (local DB by default)
+	PYTHONPATH=pipelines uv run python -m ghostjob_pipelines.run
+
+validate-seeds:  ## check every board token in seeds/companies.csv returns jobs
+	PYTHONPATH=pipelines uv run python -m ghostjob_pipelines.validate_seeds
