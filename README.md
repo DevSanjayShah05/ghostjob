@@ -16,8 +16,8 @@ keeps getting reposted, stays open for months, or comes from a company that just
 | | *208 companies, 27,412 postings on the first run (2026-11-21)* | |
 | 2 | dbt models: staging → intermediate → marts, 80 data tests ([lineage](docs/dbt_lineage.png)) | ✅ |
 | 3 | EDA notebook + [5 findings](docs/FINDINGS.md) | ✅ |
-| 4 | Embeddings (MiniLM, boilerplate removed) + repost links | ⏳ precision check |
-| 5 | LLM vagueness scoring | |
+| 4 | Embeddings (MiniLM, boilerplate removed) + repost links ([precision 100%, 48/48](docs/REPOST_PRECISION.md)) | ✅ |
+| 5 | LLM vagueness scoring | ⏳ |
 | 6 | Ghost Score model (weak supervision + XGBoost + SHAP) | |
 | 7 | API | |
 | 8–11 | Web app: landing, radar, job detail, companies, insights, resume match | |

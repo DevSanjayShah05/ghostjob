@@ -32,6 +32,7 @@ OUT_HTML = REPO_ROOT / "review" / "repost_review.html"
 OUT_MD = REPO_ROOT / "docs" / "REPOST_PRECISION.md"
 EXCERPT_CHARS = 900
 MIN_PER_TYPE = 10
+LINK_TYPES = ("closed_then_reposted", "republished_while_open")
 
 
 def sample_links(
@@ -209,6 +210,12 @@ def score(path: Path) -> dict[str, object]:
     }
 
 
+def _worst_case(result: dict[str, object]) -> str:
+    correct, sampled = result["correct"], result["sampled"]
+    assert isinstance(correct, int) and isinstance(sampled, int)
+    return f"{correct / sampled:.0%} ({correct} of {sampled})" if sampled else "-"
+
+
 def write_report(result: dict[str, object], conn: psycopg.Connection) -> str:
     totals: dict[str, int] = {
         str(t): int(n)
@@ -227,7 +234,8 @@ def write_report(result: dict[str, object], conn: psycopg.Connection) -> str:
         if isinstance(p, float)
         else "**No links judged.**",
         "",
-        f"{result['unsure_or_blank']} marked 'not sure' or left blank (excluded).",
+        f"{result['unsure_or_blank']} marked 'not sure' or left blank (excluded). Worst case, counting those as wrong:"
+        f" {_worst_case(result)}.",
         "",
         "| Link type | Links in DB | Judged | Correct | Precision |",
         "|---|---:|---:|---:|---:|",
@@ -238,6 +246,15 @@ def write_report(result: dict[str, object], conn: psycopg.Connection) -> str:
         s = by_type.get(t, {"judged": 0, "correct": 0})
         prec = f"{s['correct'] / s['judged']:.0%}" if s["judged"] else "-"
         lines.append(f"| `{t}` | {n:,} | {s['judged']} | {s['correct']} | {prec} |")
+    missing = [t for t in LINK_TYPES if t not in totals]
+    if missing:
+        lines += [
+            "",
+            "Not checked yet (no links of this type exist): "
+            + ", ".join(f"`{t}`" for t in missing)
+            + ".",
+            "Re-run the sample once the daily history produces some.",
+        ]
     lines += [
         "",
         "Method: `uv run python -m ghostjob_pipelines.review_reposts sample` / `score`.",

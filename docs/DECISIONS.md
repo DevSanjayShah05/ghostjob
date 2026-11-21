@@ -179,6 +179,10 @@ This file records those notes. A proposal changes nothing until Dev approves it.
 - **Greenhouse requisition IDs are not an answer key.** Even exact-title links with ≥ 0.98 similarity share an
   `internal_job_id` only 24% of the time. Companies open a new requisition for the same ad. So the precision
   check relies on Dev's judgment, as the spec says.
+- **Precision result (2026-11-21):** Dev judged 50 sampled links: 48 the same job, 2 not sure, 0 wrong. That's
+  100% of judged links, or 96% counting the unsure pair as wrong, against the ≥ 90% target
+  ([REPOST_PRECISION.md](REPOST_PRECISION.md)). `closed_then_reposted` has no links yet, so re-sample it once the
+  history produces some.
 - **Chains, not all pairs.** Each posting links to its most recent qualifying predecessor (A ← B ← C).
   `repost_count_180d` follows the chain back in dbt (`int_repost_chain`). Links are kept once found, because they
   record history.
