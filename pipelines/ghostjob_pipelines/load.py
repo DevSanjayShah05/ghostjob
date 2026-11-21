@@ -111,6 +111,10 @@ def apply_company_snapshot(
 
     seen_ids: set[str] = set()
     snapshots: list[tuple[Any, ...]] = []
+    touch_ids: list[int] = []  # unchanged postings: only last_seen_at moves (one batched UPDATE)
+    full_updates: list[dict[str, Any]] = []
+    texts: list[tuple[Any, ...]] = []
+    raws: list[tuple[Any, ...]] = []
     for raw, c in jobs:
         if c.source_job_id in seen_ids:  # some boards list the same job twice
             continue
@@ -120,6 +124,7 @@ def apply_company_snapshot(
         prev = existing.get(c.source_job_id)
 
         if prev is None:
+            # New postings are inserted one by one because we need their ids (~1k a day).
             row = conn.execute(
                 """
                 INSERT INTO postings (company_id, source_job_id, first_seen_at, last_seen_at,
@@ -146,43 +151,20 @@ def apply_company_snapshot(
             content_changed = old_hash != c.content_hash
             updated_changed = raw.source_updated_at != old_updated
             reopened = not was_active
-            conn.execute(
-                """
-                UPDATE postings SET
-                    last_seen_at = %(now)s, is_active = true, closed_at = NULL,
-                    times_reopened = times_reopened + %(reopened)s,
-                    title = %(title)s, title_normalized = %(title_normalized)s,
-                    location = %(location)s, remote_type = %(remote_type)s,
-                    department = %(department)s, seniority = %(seniority)s,
-                    employment_type = %(employment_type)s, apply_url = %(apply_url)s,
-                    salary_min = %(salary_min)s, salary_max = %(salary_max)s,
-                    salary_currency = %(salary_currency)s, salary_source = %(salary_source)s,
-                    source_created_at = COALESCE(source_created_at, %(source_created_at)s),
-                    source_updated_at = %(source_updated_at)s, content_hash = %(content_hash)s
-                WHERE id = %(id)s
-                """,
-                {**vals, "now": now, "reopened": int(reopened), "id": posting_id},
-            )
+            if content_changed or updated_changed or reopened:
+                full_updates.append(
+                    {**vals, "now": now, "reopened": int(reopened), "id": posting_id}
+                )
+            else:
+                touch_ids.append(posting_id)
             if c.source_job_id not in already_today:
                 counts.changed += content_changed
                 counts.reopened += reopened
 
         if content_changed:
-            conn.execute(
-                """
-                INSERT INTO posting_text (posting_id, description_clean, word_count, updated_at)
-                VALUES (%s, %s, %s, %s)
-                ON CONFLICT (posting_id) DO UPDATE SET description_clean = EXCLUDED.description_clean,
-                    word_count = EXCLUDED.word_count, embedding = NULL, updated_at = EXCLUDED.updated_at
-                """,
-                (posting_id, c.description_clean, c.word_count, now),
-            )
+            texts.append((posting_id, c.description_clean, c.word_count, now))
             blob, size = encode_payload(raw.payload)
-            conn.execute(
-                "INSERT INTO raw_jobs (run_id, company_id, source_job_id, content_hash, fetched_at,"
-                " payload_gz, payload_bytes) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                (run_id, company_id, c.source_job_id, c.content_hash, now, blob, size),
-            )
+            raws.append((run_id, company_id, c.source_job_id, c.content_hash, now, blob, size))
         snapshots.append(
             (
                 posting_id,
@@ -194,15 +176,54 @@ def apply_company_snapshot(
             )
         )
 
+    with conn.cursor() as cur:
+        if touch_ids:
+            cur.execute(
+                "UPDATE postings SET last_seen_at = %s WHERE id = ANY(%s)", (now, touch_ids)
+            )
+        cur.executemany(
+            """
+            UPDATE postings SET
+                last_seen_at = %(now)s, is_active = true, closed_at = NULL,
+                times_reopened = times_reopened + %(reopened)s,
+                title = %(title)s, title_normalized = %(title_normalized)s,
+                location = %(location)s, remote_type = %(remote_type)s,
+                department = %(department)s, seniority = %(seniority)s,
+                employment_type = %(employment_type)s, apply_url = %(apply_url)s,
+                salary_min = %(salary_min)s, salary_max = %(salary_max)s,
+                salary_currency = %(salary_currency)s, salary_source = %(salary_source)s,
+                source_created_at = COALESCE(source_created_at, %(source_created_at)s),
+                source_updated_at = %(source_updated_at)s, content_hash = %(content_hash)s
+            WHERE id = %(id)s
+            """,
+            full_updates,
+        )
+        cur.executemany(
+            """
+            INSERT INTO posting_text (posting_id, description_clean, word_count, updated_at)
+            VALUES (%s, %s, %s, %s)
+            ON CONFLICT (posting_id) DO UPDATE SET description_clean = EXCLUDED.description_clean,
+                word_count = EXCLUDED.word_count, embedding = NULL, updated_at = EXCLUDED.updated_at
+            """,
+            texts,
+        )
+        cur.executemany(
+            "INSERT INTO raw_jobs (run_id, company_id, source_job_id, content_hash, fetched_at,"
+            " payload_gz, payload_bytes) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+            raws,
+        )
+
     gone = [
         (sid, pid)
         for sid, (pid, _h, active, _u) in existing.items()
         if active and sid not in seen_ids
     ]
-    for _sid, pid in gone:
+    if gone:
         conn.execute(
-            "UPDATE postings SET is_active = false, closed_at = %s WHERE id = %s", (now, pid)
+            "UPDATE postings SET is_active = false, closed_at = %s WHERE id = ANY(%s)",
+            (now, [pid for _sid, pid in gone]),
         )
+    for _sid, pid in gone:
         snapshots.append((pid, run_date, run_id, None, None, False))
     counts.closed = len(gone)
 
