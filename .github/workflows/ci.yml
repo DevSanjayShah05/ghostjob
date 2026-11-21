@@ -30,6 +30,13 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run mypy
       - run: uv run pytest --cov=ghostjob_api --cov=ghostjob_pipelines --cov-report=term-missing --cov-fail-under=80
+      - name: dbt build (models + tests) on an empty, migrated database
+        env:
+          DATABASE_URL: postgresql://ghostjob:ghostjob@localhost:5432/ghostjob
+          PYTHONPATH: pipelines
+        run: |
+          uv run python -m ghostjob_pipelines.db
+          uv run python analytics/run_dbt.py build
 
   web:
     runs-on: ubuntu-latest

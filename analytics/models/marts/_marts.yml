@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: dim_company
+    description: One row per company with its current hiring footprint.
+    columns:
+      - name: company_id
+        data_tests: [unique, not_null]
+      - name: company_name
+        data_tests: [unique, not_null]
+      - name: ats
+        data_tests:
+          - accepted_values: { arguments: { values: [greenhouse, lever, ashby] } }
+      - name: industry
+        data_tests:
+          - not_null
+          - accepted_values: { arguments: { values: [tech, finance, healthcare, retail, consulting] } }
+      - name: size_bucket
+        data_tests:
+          - accepted_values: { arguments: { values: ["1-200", "201-1000", "1001-5000", "5001+"] } }
+      - name: open_roles
+        description: Active postings as of the latest run.
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+      - name: open_roles_per_1k_employees
+        description: Open roles per 1,000 employees, using the size-bucket midpoint (rough).
+      - name: share_with_salary
+        data_tests: [{ between: { arguments: { min_value: 0, max_value: 1 } } }]
+
+  - name: fct_posting_daily
+    description: >
+      One row per posting per tracked day (a view over posting_snapshots). is_date_refresh marks
+      "updated date moved, text unchanged"; is_content_change marks a real edit after day one.
+    data_tests:
+      - unique_combination: { arguments: { columns: [posting_id, snapshot_date] } }
+    columns:
+      - name: posting_id
+        data_tests:
+          - not_null
+          - relationships: { arguments: { to: "ref('stg_postings')", field: posting_id } }
+      - name: company_id
+        data_tests:
+          - not_null
+          - relationships: { arguments: { to: "ref('dim_company')", field: company_id } }
+      - name: days_open_on_date
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+
+  - name: mart_company_hiring_trend
+    description: >
+      Open / new / closed roles per company per successfully fetched day, and the change in open
+      roles over the last 30 days. hiring_trend_30d is NULL until a company has 7+ days of history.
+    data_tests:
+      - unique_combination: { arguments: { columns: [company_id, snapshot_date] } }
+    columns:
+      - name: company_id
+        data_tests:
+          - not_null
+          - relationships: { arguments: { to: "ref('dim_company')", field: company_id } }
+      - name: open_roles
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+      - name: window_days
+        data_tests: [{ between: { arguments: { min_value: 0, max_value: 30 } } }]
+
+  - name: mart_ghost_features
+    description: >
+      One row per active posting: the Ghost Score model's inputs (spec section 3). Columns from
+      later phases (repost_count_180d, boilerplate_similarity, vagueness_score, evergreen_flag,
+      company_layoff_90d) are NULL until those phases fill them.
+    columns:
+      - name: posting_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships: { arguments: { to: "ref('stg_postings')", field: posting_id } }
+      - name: company_id
+        data_tests:
+          - not_null
+          - relationships: { arguments: { to: "ref('dim_company')", field: company_id } }
+      - name: days_open
+        description: Days since the posting opened (ATS publish date backfill where earlier).
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+      - name: date_refresh_count
+        description: Days the ATS "updated" date moved with no change to the text.
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+      - name: similar_open_same_company
+        description: Other open postings at the same company with the same normalized title.
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+      - name: has_salary
+        data_tests: [not_null]
+      - name: salary_range_ratio
+        data_tests: [{ between: { arguments: { min_value: 1 } } }]
+      - name: seniority
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [intern, entry, mid, senior, staff_plus, manager, director, executive]
+      - name: remote_type
+        data_tests:
+          - accepted_values: { arguments: { values: [remote, hybrid, onsite, unknown] } }
+
+  - name: mart_ghost_index_by_industry
+    description: >
+      Ghost Index per industry as of the latest run. Until the Phase 6 model exists it reports
+      transparent rule-based shares (stale_share, rule_flag_share).
+    columns:
+      - name: industry
+        data_tests: [unique, not_null]
+      - name: stale_share
+        data_tests: [{ between: { arguments: { min_value: 0, max_value: 1 } } }]
+      - name: rule_flag_share
+        data_tests: [{ between: { arguments: { min_value: 0, max_value: 1 } } }]
+      - name: no_salary_share
+        data_tests: [{ between: { arguments: { min_value: 0, max_value: 1 } } }]

@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: ghostjob
+    description: Tables written by the ingestion pipeline (pipelines/, schema in db/migrations/).
+    schema: public
+    tables:
+      - name: companies
+        description: One row per company in seeds/companies.csv (plus any that were removed, is_tracked = false).
+        columns:
+          - name: id
+            data_tests: [unique, not_null]
+      - name: postings
+        description: One row per unique posting (company + ATS job id), updated every run.
+        columns:
+          - name: id
+            data_tests: [unique, not_null]
+          - name: company_id
+            data_tests:
+              - not_null
+              - relationships: { arguments: { to: "source('ghostjob', 'companies')", field: id } }
+      - name: posting_snapshots
+        description: >
+          One row per posting per day it was tracked. content_hash / source_updated_at are set only on
+          the day they change (NULL = same as before).
+        data_tests:
+          - unique_combination: { arguments: { columns: [posting_id, snapshot_date] } }
+      - name: posting_text
+        description: Clean description text (and, from Phase 4, its embedding).
+      - name: pipeline_runs
+        description: One row per pipeline run, with counts and the data-quality verdict.
+      - name: company_fetches
+        description: One row per company per run (ok / error / suspect_empty).

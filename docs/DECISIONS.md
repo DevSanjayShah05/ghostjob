@@ -114,3 +114,25 @@ This file records those notes. A proposal changes nothing until Dev approves it.
     detection needs only the embedding.
   - If that's not enough, Neon's Launch plan is usage-priced, at roughly $0.35 per GB-month for storage, so a few
     GB costs a few dollars.
+
+## Phase 2 choices
+
+- **`fct_posting_daily` is a view, not a table.** It grows by about 27k rows a day. Storing it would spend the free
+  database's 1 GB on a cheap join over `posting_snapshots`. The other marts are small tables.
+- **`similar_open_same_company` uses an exact match until Phase 4:** same company plus same normalized title.
+  On day one, 70% of active postings have at least one such twin, mostly the same role posted in several cities.
+  That makes it a weak signal for now. Phase 4 replaces it with embedding similarity, which can also tell a true
+  copy from a multi-city posting.
+- **The Ghost Index uses transparent rules until the Phase 6 model exists:**
+  - `stale_share`: open at least 60 days.
+  - `rule_flag_share`: stale AND (refreshed ≥ 3 times OR reopened ≥ 2 times).
+  - `rule_flag_share` is 0 at first by construction, because refresh and repost history takes weeks to build.
+- **Days open is backfilled with the ATS publish date.** On day one, 99.8% of postings are older than our first
+  sighting. The backfill trusts the ATS date, but some ATSs reset that date on a repost. That makes ages look
+  *younger*, so the measured staleness is a lower bound.
+
+## Open item: WARN layoff data has no phase (flagged, not yet scheduled)
+
+The spec lists WARN layoff notices as a source and `company_layoff_90d` as a feature, but no build phase ingests
+them. Proposal: add a small WARN loader for CA, NY, TX and WA (approved proposal 4) at the start of Phase 4,
+before the model needs it in Phase 6. **Needs Dev's OK.**

@@ -1,0 +1,15 @@
+# Connection details come from environment variables that analytics/run_dbt.py derives from
+# DATABASE_URL (the same variable the pipeline uses). No secrets live in this file.
+ghostjob:
+  target: default
+  outputs:
+    default:
+      type: postgres
+      host: "{{ env_var('DBT_PGHOST') }}"
+      port: "{{ env_var('DBT_PGPORT', '5432') | int }}"
+      user: "{{ env_var('DBT_PGUSER') }}"
+      password: "{{ env_var('DBT_PGPASSWORD') }}"
+      dbname: "{{ env_var('DBT_PGDATABASE') }}"
+      sslmode: "{{ env_var('DBT_PGSSLMODE', 'prefer') }}"
+      schema: public
+      threads: 4

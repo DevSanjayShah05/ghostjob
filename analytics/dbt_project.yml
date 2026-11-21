@@ -1,0 +1,26 @@
+name: ghostjob
+version: "1.0.0"
+config-version: 2
+profile: ghostjob
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # A posting open at least this many days counts as "stale" (spec: the ghost label uses 60 days).
+  stale_days: 60
+
+models:
+  ghostjob:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table

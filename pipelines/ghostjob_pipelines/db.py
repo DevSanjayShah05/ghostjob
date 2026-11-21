@@ -46,3 +46,9 @@ def migrate(conn: psycopg.Connection, migrations_dir: Path = MIGRATIONS_DIR) -> 
         applied.append(path.name)
     conn.commit()
     return applied
+
+
+if __name__ == "__main__":
+    # `python -m ghostjob_pipelines.db` applies pending migrations to DATABASE_URL.
+    with connect() as _conn:
+        print("applied:", migrate(_conn) or "nothing new")

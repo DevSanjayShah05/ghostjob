@@ -1,0 +1,36 @@
+select
+    id as posting_id,
+    company_id,
+    source_job_id,
+    title,
+    title_normalized,
+    location,
+    remote_type,
+    department,
+    seniority,
+    employment_type,
+    apply_url,
+    salary_min,
+    salary_max,
+    salary_currency,
+    salary_source,
+    (salary_min is not null or salary_max is not null) as has_salary,
+    -- max / min: 1.0 = a single number, 2.0 = "$100k-$200k". NULL without both ends.
+    case
+        when salary_min > 0 and salary_max is not null then round(salary_max / salary_min, 3)
+    end as salary_range_ratio,
+    case when salary_currency = 'USD' then salary_min end as salary_min_usd,
+    case when salary_currency = 'USD' then salary_max end as salary_max_usd,
+    source_created_at,
+    source_created_at::date as source_created_date,
+    source_updated_at,
+    first_seen_at,
+    first_seen_at::date as first_seen_date,
+    last_seen_at,
+    last_seen_at::date as last_seen_date,
+    closed_at,
+    closed_at::date as closed_date,
+    is_active,
+    times_reopened,
+    content_hash
+from {{ source('ghostjob', 'postings') }}

@@ -1,4 +1,4 @@
-.PHONY: setup db db-down api web test lint ingest validate-seeds
+.PHONY: setup db db-down api web test lint ingest validate-seeds dbt dbt-docs
 
 setup:      ## install Python + JS dependencies and git hooks
 	uv sync
@@ -29,3 +29,9 @@ ingest:     ## run the daily pipeline once against DATABASE_URL (local DB by def
 
 validate-seeds:  ## check every board token in seeds/companies.csv returns jobs
 	PYTHONPATH=pipelines uv run python -m ghostjob_pipelines.validate_seeds
+
+dbt:        ## build all dbt models and run their tests
+	uv run python analytics/run_dbt.py build
+
+dbt-docs:   ## generate and open the dbt docs site (lineage graph included)
+	uv run python analytics/run_dbt.py docs generate --static && open analytics/target/static_index.html

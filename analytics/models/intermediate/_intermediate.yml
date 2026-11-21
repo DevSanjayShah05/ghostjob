@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: int_as_of
+    description: Single row with the as-of date for all "current" metrics (latest successful run).
+    data_tests:
+      - exactly_one_row: {}
+    columns:
+      - name: as_of_date
+        data_tests: [not_null]
+  - name: int_posting_age
+    description: Days open per posting, backfilled with the ATS publish date where it is earlier.
+    columns:
+      - name: posting_id
+        data_tests: [unique, not_null]
+      - name: days_open
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+  - name: int_posting_history
+    description: Per-posting summary of the daily snapshots (days present, date refreshes, edits).
+    columns:
+      - name: posting_id
+        data_tests: [unique, not_null]
+      - name: date_refresh_count
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+  - name: int_company_daily
+    description: Open / new / closed roles per company per successfully fetched day.
+    data_tests:
+      - unique_combination: { arguments: { columns: [company_id, snapshot_date] } }

@@ -39,6 +39,10 @@ jobs:
         run: uv run python -m ghostjob_pipelines.run --trigger cron | tee run.log
         env:
           PYTHONPATH: pipelines
+      - name: Rebuild dbt models and run data tests
+        if: steps.guard.outputs.skip != 'true'
+        shell: bash
+        run: uv run python analytics/run_dbt.py build 2>&1 | tee -a run.log
       - name: Open an issue if the run failed
         if: failure() && steps.guard.outputs.skip != 'true'
         env:
