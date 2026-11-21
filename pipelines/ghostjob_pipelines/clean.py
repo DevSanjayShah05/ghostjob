@@ -170,6 +170,7 @@ def parse_salary_text(text: str) -> Salary | None:
 # Currencies where an annual salary below this is implausible for a real full-time role.
 _MAJOR_CURRENCIES = {"USD", "CAD", "EUR", "GBP", "AUD", "SGD", "CHF", "NZD"}
 MIN_PLAUSIBLE_ANNUAL = 10_000
+MAX_PLAUSIBLE_ANNUAL = 2_000_000
 
 
 def sanitize_salary(s: Salary | None) -> Salary | None:
@@ -178,8 +179,8 @@ def sanitize_salary(s: Salary | None) -> Salary | None:
     - 0 means "not given".
     - Greenhouse doesn't say whether a range is hourly. Values under 300 are treated as hourly and
       annualized (x 2080).
-    - In major currencies, anything still under 10,000 a year (e.g. a $750 placeholder) is dropped:
-      no salary is better than a wrong one.
+    - In major currencies, anything still under 10,000 a year (e.g. a $750 placeholder) or over 2M (two
+      numbers run together) is dropped: no salary is better than a wrong one.
     """
     if s is None:
         return None
@@ -196,7 +197,7 @@ def sanitize_salary(s: Salary | None) -> Salary | None:
         lo, hi = hi, lo
     if (s.currency or "USD").upper() in _MAJOR_CURRENCIES:
         top = hi if hi is not None else lo
-        if top is not None and top < MIN_PLAUSIBLE_ANNUAL:
+        if top is not None and not MIN_PLAUSIBLE_ANNUAL <= top <= MAX_PLAUSIBLE_ANNUAL:
             return None
     return Salary(min=lo, max=hi, currency=s.currency, source=s.source)
 

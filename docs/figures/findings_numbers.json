@@ -1,0 +1,59 @@
+{
+  "as_of": "2026-11-21",
+  "active_postings": 27413,
+  "companies": 208,
+  "lever_share_1y": 0.419,
+  "greenhouse_share_1y": 0.065,
+  "ashby_share_1y": 0.042,
+  "industry_median_days": {
+    "all ATS": {
+      "consulting": 66.0,
+      "finance": 57.0,
+      "tech": 53.0,
+      "healthcare": 82.0,
+      "retail": 85.0
+    },
+    "Greenhouse + Ashby": {
+      "consulting": 66.0,
+      "finance": 54.0,
+      "tech": 52.0,
+      "healthcare": 51.0,
+      "retail": 48.0
+    }
+  },
+  "ga_median_days": 53.0,
+  "ga_share_60d": 0.461,
+  "ga_share_180d": 0.154,
+  "year_old_postings": 2768,
+  "year_old_top10_share": 0.637,
+  "year_old_top10": {
+    "Gopuff": 669,
+    "Veeva": 287,
+    "Palantir": 186,
+    "Databricks": 170,
+    "Anduril": 167,
+    "DoorDash": 65,
+    "Verkada": 58,
+    "Point72": 56,
+    "Datadog": 54,
+    "OpenAI": 52
+  },
+  "gh_requisitions": 16435,
+  "gh_multi_post_share": 0.12,
+  "gh_republished_share": 0.043,
+  "republished_top_companies": {
+    "Third Bridge": 0.176,
+    "Nuro": 0.154,
+    "Anduril": 0.149,
+    "Brex": 0.143,
+    "Samsara": 0.14
+  },
+  "salary_by_location": {
+    "US, state not given (mostly remote)": 0.907,
+    "US, pay-law state": 0.817,
+    "US, no pay law": 0.551,
+    "outside US / unclear": 0.239
+  },
+  "bulk_touch_company_share": 0.185,
+  "observed_closures": 7
+}

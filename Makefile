@@ -1,4 +1,4 @@
-.PHONY: setup db db-down api web test lint ingest validate-seeds dbt dbt-docs
+.PHONY: setup db db-down api web test lint ingest validate-seeds dbt dbt-docs eda
 
 setup:      ## install Python + JS dependencies and git hooks
 	uv sync
@@ -35,3 +35,6 @@ dbt:        ## build all dbt models and run their tests
 
 dbt-docs:   ## generate and open the dbt docs site (lineage graph included)
 	uv run python analytics/run_dbt.py docs generate --static && open analytics/target/static_index.html
+
+eda:        ## re-run the EDA notebook top to bottom (set DATABASE_URL to point it at Neon)
+	cd analytics && uv run jupyter nbconvert --to notebook --execute --inplace 01_eda.ipynb

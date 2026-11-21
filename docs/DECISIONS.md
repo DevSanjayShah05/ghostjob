@@ -131,6 +131,30 @@ This file records those notes. A proposal changes nothing until Dev approves it.
   sighting. The backfill trusts the ATS date, but some ATSs reset that date on a repost. That makes ages look
   *younger*, so the measured staleness is a lower bound.
 
+## Phase 3 choices
+
+- **Correction to Phase 2: the ATS-date backfill can also make ages look *older*.** Lever's `createdAt` is when
+  the posting record was made, and companies keep one Lever posting open for years. 42% of Lever postings are
+  over a year old, compared with 4–7% on Greenhouse and Ashby. So the "lower bound" note above holds for
+  Greenhouse and Ashby, but not for Lever. The healthcare/retail "stalest" signal from Phase 2 came from Lever
+  boards. Headline age numbers in FINDINGS.md use Greenhouse + Ashby only. **For Phase 6:** age features will
+  be relative to the ATS (a percentile within the ATS), then switch to `first_seen_at` once there are ~60 days
+  of history.
+- **Repost signal available before Phase 4:** Greenhouse's `internal_job_id` (requisition). A requisition whose live
+  posts were published 30+ days apart counts as re-published. Same-day posts of one requisition are multi-city
+  copies, not reposts. Read from `raw_jobs` for now. If Phase 6 uses it, it gets promoted to a `postings` column.
+- **`updated_at` bulk-touch:** at 19% of Greenhouse companies, 80%+ of postings share one `updated_at` day. Phase 6
+  will only count a refresh that is specific to that posting (it shouldn't coincide with most of the board).
+- **Survival curve:** Kaplan-Meier with censoring and late entry (`entry` = age when first seen), Lever excluded.
+  After one day it can't be fitted (7 closures, and almost no young postings at risk), so the notebook says so
+  instead of plotting a misleading curve. It will be re-run after ~30 daily snapshots.
+- **The notebook is run against Neon** (the production DB, which has the daily history) via
+  `DATABASE_URL=... make eda`. The Neon URL lives only in the local `.env` (gitignored) and the GitHub secret.
+- **Salary sanity:** `sanitize_salary` now also drops major-currency amounts over 2M (one USD posting had two numbers
+  run together). Non-major currencies (INR, KRW, …) legitimately exceed 2M.
+- **Pay-law grouping** is a simple text match on the location string (state codes plus common city names). It's
+  good enough for a share-of-postings comparison, but not for labeling individual postings.
+
 ## Open item: WARN layoff data has no phase (flagged, not yet scheduled)
 
 The spec lists WARN layoff notices as a source and `company_layoff_90d` as a feature, but no build phase ingests

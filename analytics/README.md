@@ -1,5 +1,11 @@
 # analytics
 
+## EDA notebook (Phase 3)
+
+[`01_eda.ipynb`](01_eda.ipynb) covers data quality, days open, reposting, salary transparency and a survival curve. The
+write-up is [`docs/FINDINGS.md`](../docs/FINDINGS.md). Re-run it top to bottom with `make eda` (local DB), or point it
+at the hosted DB with `DATABASE_URL=<neon url> make eda`. Charts go to `docs/figures/`.
+
 ## dbt models (Phase 2)
 
 `make dbt` builds every model and runs every data test against `DATABASE_URL` (the local Docker DB by

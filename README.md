@@ -15,8 +15,8 @@ keeps getting reposted, stays open for months, or comes from a company that just
 | 1 | Daily ingestion from Greenhouse / Lever / Ashby | ✅ |
 | | *208 companies, 27,412 postings on the first run (2026-11-21)* | |
 | 2 | dbt models: staging → intermediate → marts, 80 data tests ([lineage](docs/dbt_lineage.png)) | ✅ |
-| 3 | EDA + findings | ⏳ |
-| 4 | Embeddings + repost detection | |
+| 3 | EDA notebook + [5 findings](docs/FINDINGS.md) | ✅ |
+| 4 | Embeddings + repost detection | ⏳ |
 | 5 | LLM vagueness scoring | |
 | 6 | Ghost Score model (weak supervision + XGBoost + SHAP) | |
 | 7 | API | |

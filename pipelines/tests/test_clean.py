@@ -137,6 +137,8 @@ def test_clean_job_uses_structured_salary_first_then_text():
         (Salary(0, 90_000, "USD", "structured"), (None, 90_000)),
         (Salary(1_090_000, 1_500_000, "INR", "structured"), (1_090_000, 1_500_000)),
         (Salary(150_000, 120_000, "USD", "structured"), (120_000, 150_000)),
+        (Salary(152_405, 179_300_152, "USD", "structured"), None),  # two numbers run together
+        (Salary(230_000_000, 315_000_000, "KRW", "structured"), (230_000_000, 315_000_000)),
     ],
 )
 def test_sanitize_salary(given, expected):
