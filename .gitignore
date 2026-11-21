@@ -1,0 +1,31 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# node
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# dbt
+analytics/target/
+analytics/dbt_packages/
+analytics/logs/
+
+# os / editors
+.DS_Store
+.vscode/
+.idea/

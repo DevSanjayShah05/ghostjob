@@ -1,0 +1,18 @@
+{
+  "name": "ghostjob",
+  "private": true,
+  "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @ghostjob/web dev",
+    "build": "pnpm --filter @ghostjob/web build",
+    "lint": "pnpm -r lint && prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

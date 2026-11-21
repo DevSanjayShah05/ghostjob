@@ -1,0 +1,10 @@
+{
+  "name": "@ghostjob/extension",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Chrome extension (Phase 12, optional). Placeholder.",
+  "scripts": {
+    "lint": "echo 'extension: nothing to lint yet'",
+    "typecheck": "echo 'extension: nothing to typecheck yet'"
+  }
+}
