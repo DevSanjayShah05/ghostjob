@@ -4,3 +4,5 @@ node_modules
 .venv
 *.md
 apps/web/next-env.d.ts
+pipelines/tests/fixtures
+uv.lock
