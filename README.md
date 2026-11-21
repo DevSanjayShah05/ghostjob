@@ -42,7 +42,7 @@ You need Docker, Node 20+, and [uv](https://docs.astral.sh/uv/).
 cp .env.example .env
 make setup      # Python + JS dependencies, git hooks
 make db         # Postgres 16 + pgvector in Docker
-make api        # http://localhost:8000/health  (API docs at /docs)
+make api        # http://127.0.0.1:8000/health  (API docs at /docs)
 make web        # http://localhost:3000
 ```
 

@@ -11,7 +11,7 @@ db:         ## start Postgres + pgvector
 db-down:
 	docker compose down
 
-api:        ## FastAPI on :8000 (docs at /docs)
+api:        ## FastAPI on http://127.0.0.1:8000 (docs at /docs)
 	uv run uvicorn ghostjob_api.main:app --app-dir apps/api --reload
 
 web:        ## Next.js on :3000
