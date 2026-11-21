@@ -1,5 +1,7 @@
 # GhostJob
 
+[![CI](https://github.com/DevSanjayShah05/ghostjob/actions/workflows/ci.yml/badge.svg)](https://github.com/DevSanjayShah05/ghostjob/actions/workflows/ci.yml)
+
 **Stop applying to ghosts.** GhostJob checks public company job boards every day, keeps the history of each
 posting, and gives each one a Ghost Score (0–100) with a plain-English reason. A posting gets a high score if it
 keeps getting reposted, stays open for months, or comes from a company that just had layoffs.
