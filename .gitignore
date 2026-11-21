@@ -29,3 +29,6 @@ analytics/logs/
 .DS_Store
 .vscode/
 .idea/
+
+# hand-review pages (contain posting text)
+review/

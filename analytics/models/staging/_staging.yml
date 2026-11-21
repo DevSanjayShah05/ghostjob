@@ -44,3 +44,20 @@ models:
       - name: fetch_status
         data_tests:
           - accepted_values: { arguments: { values: [ok, error, suspect_empty] } }
+  - name: stg_repost_links
+    description: Repost links, renamed.
+    columns:
+      - name: similarity
+        data_tests:
+          - between: { arguments: { min_value: 0.92, max_value: 1.0001 } }
+      - name: gap_days
+        data_tests:
+          - not_null
+          - between: { arguments: { min_value: 0 } }
+  - name: stg_posting_similarity
+    description: Near-duplicate count and boilerplate similarity per open posting.
+    columns:
+      - name: near_dup_open
+        data_tests:
+          - not_null
+          - between: { arguments: { min_value: 0 } }

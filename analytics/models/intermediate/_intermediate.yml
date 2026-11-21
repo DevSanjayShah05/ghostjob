@@ -26,3 +26,12 @@ models:
     description: Open / new / closed roles per company per successfully fetched day.
     data_tests:
       - unique_combination: { arguments: { columns: [company_id, snapshot_date] } }
+  - name: int_repost_chain
+    description: >
+      One row per posting with at least one earlier copy - total earlier copies (following the chain back) and
+      repost_count_180d (copies started within the 180 days before it).
+    columns:
+      - name: posting_id
+        data_tests: [unique, not_null]
+      - name: repost_count_180d
+        data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]

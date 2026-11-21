@@ -64,8 +64,7 @@ models:
   - name: mart_ghost_features
     description: >
       One row per active posting: the Ghost Score model's inputs (spec section 3). Columns from
-      later phases (repost_count_180d, boilerplate_similarity, vagueness_score, evergreen_flag,
-      company_layoff_90d) are NULL until those phases fill them.
+      later phases (vagueness_score, evergreen_flag) are NULL until those phases fill them.
     columns:
       - name: posting_id
         data_tests:
@@ -83,8 +82,16 @@ models:
         description: Days the ATS "updated" date moved with no change to the text.
         data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
       - name: similar_open_same_company
-        description: Other open postings at the same company with the same normalized title.
+        description: >
+          Other open postings at the company with embedding cosine >= 0.92, excluding copies published within a
+          day (multi-city batches). NULL only if the posting hasn't been embedded yet.
+        data_tests: [{ between: { arguments: { min_value: 0 } } }]
+      - name: repost_count_180d
+        description: Earlier copies of this job (repost links, followed back) started in the prior 180 days.
         data_tests: [not_null, { between: { arguments: { min_value: 0 } } }]
+      - name: boilerplate_similarity
+        description: Cosine to the company's average open posting (boilerplate removed first). NULL under 5 postings.
+        data_tests: [{ between: { arguments: { min_value: -1, max_value: 1.0001 } } }]
       - name: has_salary
         data_tests: [not_null]
       - name: salary_range_ratio

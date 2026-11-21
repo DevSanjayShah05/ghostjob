@@ -67,7 +67,8 @@ def conn(_migrated_db: str) -> Iterator[psycopg.Connection]:
     with psycopg.connect(_migrated_db) as c:
         c.execute(
             "TRUNCATE companies, pipeline_runs, company_fetches, raw_jobs, postings,"
-            " posting_snapshots, posting_text RESTART IDENTITY CASCADE"
+            " posting_snapshots, posting_text, repost_links, posting_similarity, layoff_events"
+            " RESTART IDENTITY CASCADE"
         )
         c.commit()
         yield c

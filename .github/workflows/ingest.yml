@@ -39,6 +39,20 @@ jobs:
         run: uv run python -m ghostjob_pipelines.run --trigger cron | tee run.log
         env:
           PYTHONPATH: pipelines
+      - name: Cache the embedding model
+        if: steps.guard.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-all-MiniLM-L6-v2
+      - name: Embed new and changed postings, then link reposts
+        if: steps.guard.outputs.skip != 'true'
+        shell: bash
+        run: |
+          uv run python -m ghostjob_pipelines.embed 2>&1 | tail -n 3 | tee -a run.log
+          uv run python -m ghostjob_pipelines.reposts 2>&1 | tee -a run.log
+        env:
+          PYTHONPATH: pipelines
       - name: Rebuild dbt models and run data tests
         if: steps.guard.outputs.skip != 'true'
         shell: bash

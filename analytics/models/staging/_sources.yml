@@ -26,7 +26,32 @@ sources:
         data_tests:
           - unique_combination: { arguments: { columns: [posting_id, snapshot_date] } }
       - name: posting_text
-        description: Clean description text (and, from Phase 4, its embedding).
+        description: Clean description text and its embedding (all-MiniLM-L6-v2, boilerplate removed).
+      - name: repost_links
+        description: >
+          "Same job, new ID" links from ghostjob_pipelines/reposts.py. posting_id is the newer posting.
+        data_tests:
+          - unique_combination: { arguments: { columns: [posting_id, previous_posting_id] } }
+        columns:
+          - name: posting_id
+            data_tests:
+              - not_null
+              - relationships: { arguments: { to: "source('ghostjob', 'postings')", field: id } }
+          - name: previous_posting_id
+            data_tests:
+              - not_null
+              - relationships: { arguments: { to: "source('ghostjob', 'postings')", field: id } }
+          - name: link_type
+            data_tests:
+              - accepted_values:
+                  { arguments: { values: [closed_then_reposted, republished_while_open] } }
+      - name: posting_similarity
+        description: Per open posting, recomputed daily - near-duplicate count and boilerplate similarity.
+        columns:
+          - name: posting_id
+            data_tests: [unique, not_null]
+      - name: layoff_events
+        description: WARN Act layoff notices (CA, NY, TX, WA), matched to tracked companies where possible.
       - name: pipeline_runs
         description: One row per pipeline run, with counts and the data-quality verdict.
       - name: company_fetches

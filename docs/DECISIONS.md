@@ -155,6 +155,47 @@ This file records those notes. A proposal changes nothing until Dev approves it.
 - **Pay-law grouping** is a simple text match on the location string (state codes plus common city names). It's
   good enough for a share-of-postings comparison, but not for labeling individual postings.
 
+## Phase 4 choices
+
+- **Company boilerplate is removed before embedding.** MiniLM reads only the first 256 tokens, and many companies
+  open every description with the same "About us" block. At Gopuff and Anduril, 52–62% of description words are
+  lines shared across the company's postings. Without stripping, every posting at those companies looks
+  near-identical, which would mean false repost links. A line is boilerplate if it appears in ≥ 30% (and ≥ 3) of
+  the company's open postings. The remaining text is embedded in up to 4 chunks of ~180 words (the title leads
+  the first chunk), and the chunk vectors are averaged.
+- **Two link types.** The spec's rule (old posting *closed*, a near-identical one appears within 180 days) can only
+  fire as closures accumulate. After one day there are 7 closures, so it can't produce 50 links to check for
+  weeks. Added `republished_while_open`: the old copy is still open, the new one is at the *same location*, and it
+  was published 30+ days later. Same-day multi-city copies are excluded by the location + gap rules. Both types
+  share the spec's candidate filter: same company, same normalized title, cosine ≥ 0.92. The precision check
+  samples both types (at least 10 of each).
+- **Candidates share the same *title*, not just the same normalized title (stricter than the spec).** The first run
+  grouped by `title_normalized` and produced 1,299 links. Reading a sample showed many were different jobs from a
+  shared company template: "Senior Buyer, Connected Warfare" vs "Buyer, Autonomous Airpower" (both normalize to
+  "buyer"), and "Engineering Manager" vs "Engineering Manager - Realtime". The repost check now groups by
+  `title_key`: lowercased, punctuation removed, seniority and team kept. That gives 164 links (165 on Neon). A hand
+  read of 10 found 9 that were clearly the same job. The 10th had a vague location ("Hybrid"), and the 50-link check
+  decides how much that matters.
+- **Greenhouse requisition IDs are not an answer key.** Even exact-title links with ≥ 0.98 similarity share an
+  `internal_job_id` only 24% of the time. Companies open a new requisition for the same ad. So the precision
+  check relies on Dev's judgment, as the spec says.
+- **Chains, not all pairs.** Each posting links to its most recent qualifying predecessor (A ← B ← C).
+  `repost_count_180d` follows the chain back in dbt (`int_repost_chain`). Links are kept once found, because they
+  record history.
+- **`similar_open_same_company` is now embedding-based** (cosine ≥ 0.92, any title). Copies published within a day
+  of each other are excluded, because those are multi-city batches, not duplicates. This replaces the Phase 2
+  exact-title proxy, where 70% of postings had a "twin".
+- **`boilerplate_similarity`** = cosine between a posting and the average of the company's other open postings
+  (boilerplate already removed, so a high value means the role text itself is templated). NULL under 5 open
+  postings. Both stats are recomputed daily in `posting_similarity`.
+- **Candidates are compared exactly, not through HNSW.** Grouping by company + title gives small groups, so an
+  exact comparison is fast and has no recall loss. The HNSW index (from Phase 0) serves "similar jobs"
+  lookups in the API later.
+- **CPU-only PyTorch on Linux** via a uv index pin, so CI and the daily job don't download ~2 GB of CUDA wheels.
+  The model is cached between daily runs.
+- **The Neon backfill reused the local embeddings**, copied where (company, job id, content hash) match, instead
+  of recomputing ~27k postings on a small hosted instance. The daily job embeds the rest.
+
 ## Open item: WARN layoff data has no phase (flagged, not yet scheduled)
 
 The spec lists WARN layoff notices as a source and `company_layoff_90d` as a feature, but no build phase ingests

@@ -16,7 +16,7 @@ keeps getting reposted, stays open for months, or comes from a company that just
 | | *208 companies, 27,412 postings on the first run (2026-11-21)* | |
 | 2 | dbt models: staging → intermediate → marts, 80 data tests ([lineage](docs/dbt_lineage.png)) | ✅ |
 | 3 | EDA notebook + [5 findings](docs/FINDINGS.md) | ✅ |
-| 4 | Embeddings + repost detection | ⏳ |
+| 4 | Embeddings (MiniLM, boilerplate removed) + repost links | ⏳ precision check |
 | 5 | LLM vagueness scoring | |
 | 6 | Ghost Score model (weak supervision + XGBoost + SHAP) | |
 | 7 | API | |
@@ -56,6 +56,13 @@ Every day at 06:00 UTC, a GitHub Actions job ([`ingest.yml`](.github/workflows/i
    - If fewer than 50% of the usual postings show up, or more than 20% of boards fail, the run fails and opens a
      GitHub issue.
    - A board that suddenly returns zero jobs closes nothing.
+5. **Embed and link reposts.**
+   - New and changed postings are embedded with all-MiniLM-L6-v2 (run locally, no API cost). Each company's
+     repeated "About us" and benefits lines are removed first.
+   - A posting is linked as a repost when the same company has a posting with the same title, cosine ≥ 0.92, and
+     either the old one closed before the new one appeared, or the old one is still open at the same location and
+     the new one came 30+ days later.
+6. **Rebuild the dbt models** and run their data tests.
 
 The company list is [`seeds/companies.csv`](seeds/companies.csv). Every board ID in it was checked with
 `make validate-seeds`. The design choices and their trade-offs are in [`docs/DECISIONS.md`](docs/DECISIONS.md).
