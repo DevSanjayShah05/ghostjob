@@ -14,7 +14,8 @@ models:
       - name: industry
         data_tests:
           - not_null
-          - accepted_values: { arguments: { values: [tech, finance, healthcare, retail, consulting] } }
+          - accepted_values:
+              { arguments: { values: [tech, finance, healthcare, retail, consulting] } }
       - name: size_bucket
         data_tests:
           - accepted_values: { arguments: { values: ["1-200", "201-1000", "1001-5000", "5001+"] } }
